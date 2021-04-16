@@ -6,8 +6,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     @WebSocketServer() server;
 
-    private data: SocketDataDTO;
-
     async handleConnection() {
         this.server.emit('connect', "client connect");
     }
@@ -21,9 +19,10 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         if(!data.cctv_number || 
             !data.cctv_location || !data.cctv_data)
             console.log("no data");
-            
+        
+        
+        
         client.broadcast.emit('GetData', data);
-
     }s
 
 }
