@@ -4,7 +4,7 @@
     "port": 3306,
     "username": "root",
     "password": "sk362712",
-    "database": "cross",
+    "database": "cross_walker_watch",
     "entities": ["src/entity/*.entity{.ts,.js}"],
     "logging": true,
     "synchronize": true
