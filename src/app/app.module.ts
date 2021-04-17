@@ -1,17 +1,26 @@
 import { Module } from '@nestjs/common';
 import { SocketModule } from 'src/socket/socket.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { cctvData } from 'src/socket/entity/cctv.entity';
 
 const ormconfig = require('../../ormconfig.json');
 console.log(ormconfig);
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ormconfig), 
-    SocketModule],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        TypeOrmModule.forRoot({
+            type: 'mysql',
+            host: 'localhost',
+            port: 3306,
+            username: 'root',
+            password: 'sk362712',
+            database: 'cross_walker_watch',
+            entities: [cctvData],
+            synchronize: true,
+        }),
+        SocketModule],
+    controllers: [],
+    providers: [],
 })
 
 export class AppModule {}
