@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { cctvData } from 'src/socket/entity/cctv.entity';
 
 const ormconfig = require('../../ormconfig.json');
-console.log(ormconfig);
 
 @Module({
     imports: [
