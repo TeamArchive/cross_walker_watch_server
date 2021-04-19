@@ -28,7 +28,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         if(!data.cctv_number || !data.cctv_location || !data.cctv_data) {
                 console.log("Get data error");
                 client.broadcast.emit('GetData', 'Get data error');
-
                 return;
             }
             
@@ -37,7 +36,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         if( !saveData_Result ) {
             console.log("save Data error");
             client.broadcast.emit('GetData', 'save Data error');
-
             return;
         }
 
