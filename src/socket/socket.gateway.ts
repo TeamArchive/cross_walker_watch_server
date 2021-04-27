@@ -26,9 +26,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @SubscribeMessage('SendData')
     async GetData( client, data: SocketDataDTO ) {
         if( !data.cctv_number || !data.cctv_location || !data.cctv_data ) {
-                console.log("data error");
-                return;
-            }
+            console.log("data error");
+            return;
+        }
             
         const saveData_Result = this.socketservice.saveData( data )
 
