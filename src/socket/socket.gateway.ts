@@ -31,6 +31,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         }
             
         const saveData_Result = this.socketservice.saveData( data )
+        console.log(saveData_Result);
 
         if( !saveData_Result ) {
             console.log("save Data error");
