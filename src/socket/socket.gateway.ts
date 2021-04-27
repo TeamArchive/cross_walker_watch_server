@@ -23,23 +23,21 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         this.server.emit('disconnect', "client connect");
     }
 
-    @SubscribeMessage('GetData')
-    async GetData(client, data: SocketDataDTO){
-        if(!data.cctv_number || !data.cctv_location || !data.cctv_data) {
-                console.log("Get data error");
-                client.broadcast.emit('GetData', 'Get data error');
+    @SubscribeMessage('SendData')
+    async GetData( client, data: SocketDataDTO ) {
+        if( !data.cctv_number || !data.cctv_location || !data.cctv_data ) {
+                console.log("data error");
                 return;
             }
             
-        const saveData_Result = this.socketservice.saveData(data)
+        const saveData_Result = this.socketservice.saveData( data )
 
         if( !saveData_Result ) {
             console.log("save Data error");
-            client.broadcast.emit('GetData', 'save Data error');
             return;
         }
 
-        client.broadcast.emit('GetData', data);
+        client.broadcast.emit( 'GetData', data );
     }
 
 }

@@ -7,9 +7,9 @@ export class SocketController {
     constructor(private readonly Socket_Service: SocketService) {}
 
     @Get()
-    saveData( @Body() data: SocketDataDTO ): String {
+    saveData( @Body() data: SocketDataDTO ): boolean {
         this.Socket_Service.saveData(data);
         
-        return "success";
+        return true;
     }
 }
