@@ -39,7 +39,14 @@ export class SocketService {
                 pk: changeStateData_DTO.pk
         }})
 
-        
+        if( target?.pk === changeStateData_DTO.pk ) {
+            changeStateData_DTO.updateEntity(target);
+
+            await this.cctvData_Repo.save(target);
+
+            return target;
+        }
 		
+        return;
     }
 }
