@@ -1,14 +1,14 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 import { cctvData } from "../entity/cctv.entity";
 
-export class SocketDataDTO {
+export class changeStateDataDTO {
     @IsNotEmpty()
 	@IsString()
-	cctv_number: string;
+	pk: string;
 	
 	@IsNotEmpty()
 	@IsString()
-	cctv_location: string;
+	user: string;
 
     @IsNotEmpty()
 	@IsString()
@@ -16,19 +16,26 @@ export class SocketDataDTO {
 
 	@IsNotEmpty()
 	@IsString()
-	cctv_url: string;
+	success_at: string;
 
     public async toEntity() {
-		const { cctv_number, cctv_location, cctv_state, cctv_url } = this;
+		const { pk, user, cctv_state, success_at } = this;
 
 		const Data_Entity = new cctvData;
 		
-		Data_Entity.cctv_number = cctv_number;
-		Data_Entity.cctv_location = cctv_location;
+		Data_Entity.pk = pk;
+		Data_Entity.user = user;
         Data_Entity.cctv_state = cctv_state;
-		Data_Entity.cctv_url = cctv_url;
+		Data_Entity.success_at = success_at;
 
 
 		return Data_Entity;
+	}
+
+    public updateEntity(target) {
+		const { cctv_state, success_at } = this;
+
+		target.entity.cctv_state = cctv_state;
+        target.entity.success_at = success_at;
 	}
 }

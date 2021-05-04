@@ -16,18 +16,23 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     constructor( private socketservice : SocketService ) {}
     
     async handleConnection() {
+        console.log("connect")
         this.server.emit('connect', "client connect");
     }
 
     async handleDisconnect() {
+        console.log("disconnect")
         this.server.emit('disconnect', "client connect");
     }
 
     @SubscribeMessage('SendData')
-    async GetData( client, data: SocketDataDTO ) {
-        if( !data.cctv_number || !data.cctv_location || !data.cctv_data ) {
+    async GetData( 
+        client, 
+        data: SocketDataDTO 
+    ): Promise<String> {
+        if( !data.cctv_number || !data.cctv_location || !data.cctv_state ) {
             console.log("data error");
-            return;
+            return 'data error';
         }
             
         const saveData_Result = this.socketservice.saveData( data )
@@ -35,10 +40,10 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
         if( !saveData_Result ) {
             console.log("save Data error");
-            return;
+            return 'save Data error';
         }
 
-        client.broadcast.emit( 'GetData', data );
+        client.broadcast.emit( 'GetData', saveData_Result );
     }
 
 }

@@ -24,19 +24,29 @@ export class cctvData {
 	pk: string;
 
 	@IsNotEmpty()
-	@Column({ name: "cctv_number" })
+	@Column({ name: "cctv_number", nullable: true })
 	cctv_number: string;
 
 	@IsNotEmpty()
-	@Column({ name: "cctv_location" })
+	@Column({ name: "cctv_location", nullable: true })
 	cctv_location: string;
 
 	@IsNotEmpty()
-	@Column({ name: "cctv_data" })
-	cctv_data: string;
+	@Column({ name: "cctv_state", nullable: true })
+	cctv_state: string;
+
+	@IsNotEmpty()
+	@Column({ name: "cctv_url", nullable: true })
+	cctv_url: string;
 
 	@CreateDateColumn({ name: "created_at" })
 	createdAt: Date;
+
+	@Column({ name: "user" })
+	user: string;
+	
+	@Column({ name: "success_at" })
+	success_at: string;
 
 }
 

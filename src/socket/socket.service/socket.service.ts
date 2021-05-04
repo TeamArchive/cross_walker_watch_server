@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { changeStateDataDTO } from '../DTO/change-state-data.dto';
 import { SocketDataDTO } from '../DTO/socket-data.dto';
 import { cctvData } from '../entity/cctv.entity';
 import { cctvDataRepo } from '../Repo/socket.repo';
@@ -20,7 +21,7 @@ export class SocketService {
         const data_dto: SocketDataDTO = new SocketDataDTO;
         data_dto.cctv_number = data.cctv_number;
         data_dto.cctv_location = data.cctv_location;
-        data_dto.cctv_data = data.cctv_data;
+        data_dto.cctv_state = data.cctv_state;
 
         const data_entity = await data_dto.toEntity();
 
@@ -28,5 +29,17 @@ export class SocketService {
         console.log("repo result : ", result);
 
         return true;
+    }
+
+    public async changeStateData(
+        changeStateData_DTO: changeStateDataDTO
+    ) {
+        const target = await this.cctvData_Repo.findOne({
+            where: {
+                pk: changeStateData_DTO.pk
+        }})
+
+        
+		
     }
 }

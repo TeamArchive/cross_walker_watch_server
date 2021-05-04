@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { SocketService } from 'src/socket/socket.service/socket.service';
 import { SocketDataDTO } from '../DTO/socket-data.dto';
 
@@ -12,4 +12,11 @@ export class SocketController {
         
         return true;
     }
+
+    // @Post()
+    // create(@Body() movieData: ) {
+    //     console.log(movieData);
+
+    //     return this.moviesService.create(movieData);
+    // }
 }
