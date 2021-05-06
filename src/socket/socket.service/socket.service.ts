@@ -22,6 +22,7 @@ export class SocketService {
         data_dto.cctv_number = data.cctv_number;
         data_dto.cctv_location = data.cctv_location;
         data_dto.cctv_state = data.cctv_state;
+        data_dto.cctv_url = data.cctv_url;
 
         const data_entity = await data_dto.toEntity();
 
@@ -35,11 +36,10 @@ export class SocketService {
         changeStateData_DTO: changeStateDataDTO
     ) {
         const target = await this.cctvData_Repo.findOne({
-            where: {
-                pk: changeStateData_DTO.pk
-        }})
+            where: { pk: changeStateData_DTO.pk }
+        })
 
-        if( target?.pk === changeStateData_DTO.pk ) {
+        if( target.pk === changeStateData_DTO.pk ) {
             changeStateData_DTO.updateEntity(target);
 
             await this.cctvData_Repo.save(target);
