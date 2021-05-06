@@ -15,9 +15,7 @@ export class SocketService {
 
     public async saveData(
         data: SocketDataDTO
-    ): Promise<boolean> {
-        console.log(data);
-
+    ): Promise<void> {
         const data_dto: SocketDataDTO = new SocketDataDTO;
         data_dto.cctv_number = data.cctv_number;
         data_dto.cctv_location = data.cctv_location;
@@ -28,30 +26,24 @@ export class SocketService {
 
         const result = await this.cctvData_Repo.save(data_entity);
         console.log("repo result : ", result);
-
         return;
     }
 
     public async changeStateData(
         changeStateData_DTO: changeStateDataDTO
-    ) {
-        console.log("changeStateData_DTO :", changeStateData_DTO);
-
+    ): Promise<void> {
         const target = await this.cctvData_Repo.findOne({
             where: { pk: changeStateData_DTO.pk }
         })
         
-        console.log("target : ", target);
-
         target.user = changeStateData_DTO.user;
         target.cctv_state = changeStateData_DTO.cctv_state;
         target.success_at = changeStateData_DTO.success_at;
 
         const data_entity = await target.toEntity();
-        console.log("data_entity : ", data_entity);
 
-        await this.cctvData_Repo.save(data_entity);
-        
+        const result = await this.cctvData_Repo.save(data_entity);
+        console.log("repo result : ", result);
         return;
     }
 }

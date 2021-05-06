@@ -8,16 +8,16 @@ export class SocketController {
     constructor(private readonly Socket_Service: SocketService) {}
 
     @Post()
-    saveData( @Body() SocketData_DTO: SocketDataDTO ): boolean {
-        this.Socket_Service.saveData(SocketData_DTO);
+    saveData( @Body() SocketData_DTO: SocketDataDTO ): void {
+        const result = this.Socket_Service.saveData(SocketData_DTO);
         
-        return true;
+        return;
     }
 
     @Post('/state')
-    create(@Body() changeStateData_DTO: changeStateDataDTO) {
-        this.Socket_Service.changeStateData(changeStateData_DTO);
-        
-        return true;
+    create(@Body() changeStateData_DTO: changeStateDataDTO): void {
+        const result = this.Socket_Service.changeStateData(changeStateData_DTO);
+
+        return;
     }
 }
