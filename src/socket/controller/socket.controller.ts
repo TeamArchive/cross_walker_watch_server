@@ -16,9 +16,8 @@ export class SocketController {
 
     @Post('/state')
     create(@Body() changeStateData_DTO: changeStateDataDTO) {
-        console.log("control <- DTO : ", changeStateData_DTO);
-
         this.Socket_Service.changeStateData(changeStateData_DTO);
+        
         return true;
     }
 }

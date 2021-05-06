@@ -48,5 +48,28 @@ export class cctvData {
 	@Column({ name: "success_at", nullable: true })
 	success_at: string;
 
+	public toEntity() {
+		const { pk, user, cctv_state, success_at } = this;
+
+		const Data_Entity = new cctvData;
+		
+		Data_Entity.pk = pk;
+		Data_Entity.user = user;
+        Data_Entity.cctv_state = cctv_state;
+		Data_Entity.success_at = success_at;
+
+
+		return Data_Entity;
+	};
+
+    public updateEntity(target) {
+		console.log("target : ", target);
+		
+		const { user, cctv_state, success_at } = this;
+
+		target.user = user;
+		target.cctv_state = cctv_state;
+        target.success_at = success_at;
+	}
 }
 

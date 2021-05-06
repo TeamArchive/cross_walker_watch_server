@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 import { cctvData } from "../entity/cctv.entity";
 
 export class SocketDataDTO {

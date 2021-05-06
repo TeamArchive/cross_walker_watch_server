@@ -29,24 +29,29 @@ export class SocketService {
         const result = await this.cctvData_Repo.save(data_entity);
         console.log("repo result : ", result);
 
-        return true;
+        return;
     }
 
     public async changeStateData(
         changeStateData_DTO: changeStateDataDTO
     ) {
+        console.log("changeStateData_DTO :", changeStateData_DTO);
+
         const target = await this.cctvData_Repo.findOne({
             where: { pk: changeStateData_DTO.pk }
         })
+        
+        console.log("target : ", target);
 
-        if( target.pk === changeStateData_DTO.pk ) {
-            changeStateData_DTO.updateEntity(target);
+        target.user = changeStateData_DTO.user;
+        target.cctv_state = changeStateData_DTO.cctv_state;
+        target.success_at = changeStateData_DTO.success_at;
 
-            await this.cctvData_Repo.save(target);
+        const data_entity = await target.toEntity();
+        console.log("data_entity : ", data_entity);
 
-            return target;
-        }
-		
+        await this.cctvData_Repo.save(data_entity);
+        
         return;
     }
 }
