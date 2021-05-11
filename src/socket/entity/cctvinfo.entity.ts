@@ -48,6 +48,9 @@ export class cctvData {
 	@Column({ name: "success_at", nullable: true })
 	success_at: string;
 
+	@Column({ name: "cctv_notify", nullable: true })
+	cctv_notify: number;
+
 	public toEntity() {
 		const { pk, user, cctv_state, success_at } = this;
 
