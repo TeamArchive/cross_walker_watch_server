@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { changeStateDataDTO } from '../DTO/change-state-data.dto';
 import { SocketDataDTO } from '../DTO/socket-data.dto';
-import { cctvData } from '../entity/cctvinfo.entity';
+import { cctvData } from "../entity/cctvData.entity";
 import { cctvDataRepo } from '../Repo/socket.repo';
 
 

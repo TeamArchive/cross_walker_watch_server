@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { SocketModule } from 'src/socket/socket.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { cctvData } from 'src/socket/entity/cctvinfo.entity';
+import { cctvData } from 'src/socket/entity/cctvData.entity';
 
 const ormconfig = require('../../ormconfig.json');
 

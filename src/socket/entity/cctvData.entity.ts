@@ -13,7 +13,6 @@ import {
 
 } from "typeorm";
 import { IsNotEmpty } from "class-validator";
-import { user } from "./user.entity";
 
 /**
  * Data Entity
@@ -43,10 +42,7 @@ export class cctvData {
 	@CreateDateColumn({ name: "created_at" })
 	createdAt: Date;
 
-	@ManyToOne(
-		(type) => user, 
-		(user) => user.cctvinfo
-	)
+	@Column({ name: "user", nullable: true })
 	user: string;
 	
 	@Column({ name: "success_at", nullable: true })

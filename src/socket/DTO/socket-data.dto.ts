@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString } from "class-validator";
-import { cctvData } from "../entity/cctvinfo.entity";
+import { cctvData } from "../entity/cctvData.entity";
+
 
 export class SocketDataDTO {
     @IsNotEmpty()
