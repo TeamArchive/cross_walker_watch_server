@@ -13,11 +13,12 @@ import {
 
 } from "typeorm";
 import { IsNotEmpty } from "class-validator";
+import { user } from "./user.entity";
 
 /**
  * Data Entity
  */
-@Entity({ name: "data" })
+@Entity({ name: "cctvData" })
 export class cctvData {
 	
 	@PrimaryGeneratedColumn("uuid")
@@ -42,7 +43,10 @@ export class cctvData {
 	@CreateDateColumn({ name: "created_at" })
 	createdAt: Date;
 
-	@Column({ name: "user", nullable: true })
+	@ManyToOne(
+		(type) => user, 
+		(user) => user.cctvinfo
+	)
 	user: string;
 	
 	@Column({ name: "success_at", nullable: true })
