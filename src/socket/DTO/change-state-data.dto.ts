@@ -19,6 +19,8 @@ export class changeStateDataDTO {
 	@IsString()
 	user_pk: string;
 	
+	user
+
     @IsNotEmpty()
 	@IsString()
 	cctv_state: string;
