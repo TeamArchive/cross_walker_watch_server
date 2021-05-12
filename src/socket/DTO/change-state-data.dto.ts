@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString } from "class-validator";
 import { cctvData } from "../entity/cctvData.entity";
+import { user } from '../entity/user.entity';
 
 /**
  * test data
@@ -15,9 +16,10 @@ export class changeStateDataDTO {
 	@IsString()
 	pk: string;
 	
-	@IsNotEmpty()
 	@IsString()
-	user: string;
+	user_pk: string;
+	
+	user: user
 
     @IsNotEmpty()
 	@IsString()
@@ -26,5 +28,17 @@ export class changeStateDataDTO {
 	@IsNotEmpty()
 	@IsString()
 	success_at: string;
+
+	public toEntity() {
+		const { pk, cctv_state, success_at } = this;
+
+		const Data_Entity = new cctvData;
+		
+		Data_Entity.pk = pk;
+        Data_Entity.cctv_state = cctv_state;
+		Data_Entity.success_at = success_at;
+
+		return Data_Entity;
+	};
 
 }
