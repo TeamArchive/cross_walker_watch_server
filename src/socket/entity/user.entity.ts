@@ -15,9 +15,6 @@ import {
 import { IsNotEmpty } from "class-validator";
 import { cctvData } from "./cctvData.entity";
 
-/**
- * Data Entity
- */
 @Entity({ name: "user" })
 export class user {
 
@@ -27,8 +24,7 @@ export class user {
 	@Column({ name: "name", nullable: true })
 	name: string;
 	
-	@OneToMany((type) => cctvData, cctvData => cctvData.user)
-	@Column({ name: "manage_cctv", nullable: true })	
+	@OneToMany((type) => cctvData, cctvData => cctvData.pk)
 	manage_cctv: cctvData[];
 
 }

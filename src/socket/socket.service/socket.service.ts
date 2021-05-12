@@ -54,9 +54,7 @@ export class SocketService {
         target.cctv_state = changeStateData_DTO.cctv_state;
         target.success_at = changeStateData_DTO.success_at;
 
-        const data_entity = await target.toEntity();
-
-        const result = await this.cctvData_Repo.save(data_entity);
+        const result = await this.cctvData_Repo.save(target);
         console.log("repo result : ", result);
 
         return;

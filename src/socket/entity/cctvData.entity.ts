@@ -15,17 +15,14 @@ import {
 import { IsNotEmpty } from "class-validator";
 import { user } from "./user.entity";
 
-/**
- * Data Entity
- */
 @Entity({ name: "cctvData" })
 export class cctvData {
 	
 	@PrimaryGeneratedColumn("uuid")
 	pk: string;
 
-	@ManyToOne((type) => user, user => user.manage_cctv)
-	@Column({ name: "user", nullable: true, default: null })
+	@ManyToOne((type) => user, user => user.manage_cctv, { nullable: true })
+	@JoinColumn({ name: "user" })
 	user: user;
 
 	@IsNotEmpty()

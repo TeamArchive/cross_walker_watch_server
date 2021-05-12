@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { SocketModule } from 'src/socket/socket.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { cctvData } from 'src/socket/entity/cctvData.entity';
+import { user } from 'src/socket/entity/user.entity';
 
 const ormconfig = require('../../ormconfig.json');
 
@@ -14,7 +15,7 @@ const ormconfig = require('../../ormconfig.json');
             username: 'root',
             password: 'sk362712',
             database: 'cross_walker_watch',
-            entities: [cctvData],
+            entities: [cctvData, user],
             synchronize: true,
         }),
         SocketModule],

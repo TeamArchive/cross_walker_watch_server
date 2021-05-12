@@ -1,7 +1,15 @@
 import { IsNotEmpty, IsString } from "class-validator";
 import { cctvData } from "../entity/cctvData.entity";
 
-
+/**
+ * test data
+{
+	"cctv_number":"e3",
+	"cctv_location":"감삼네거리",
+	"cctv_state":"warning",
+	"cctv_url":"www.naver.com"
+}
+ */
 export class SocketDataDTO {
     @IsNotEmpty()
 	@IsString()
