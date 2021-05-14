@@ -28,14 +28,14 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @SubscribeMessage('SendData')
     async GetData( 
         client, 
-        data: SocketDataDTO 
+        SocketData_DTO: SocketDataDTO 
     ): Promise<String> {
-        if( !data.cctv_number || !data.cctv_location || !data.cctv_state ) {
+        if( !SocketData_DTO.cctv_number || !SocketData_DTO.cctv_location || !SocketData_DTO.cctv_state || !SocketData_DTO.cctv_url) {
             console.log("data error");
             return 'data error';
         }
             
-        const saveData_Result = this.socketservice.saveData( data )
+        const saveData_Result = this.socketservice.saveData( SocketData_DTO )
         console.log(saveData_Result);
 
         if( !saveData_Result ) {
