@@ -35,3 +35,6 @@ lerna-debug.log*
 
 # Database
 ormconfig.json
+
+**-firebase-adminsdk-**
+/build

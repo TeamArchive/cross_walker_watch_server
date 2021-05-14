@@ -22,7 +22,7 @@ export class SocketService {
      */
     public async saveData(
         data: SocketDataDTO
-    ): Promise<void> {
+    ): Promise<cctvData> {
         const data_dto: SocketDataDTO = new SocketDataDTO;
         data_dto.cctv_number = data.cctv_number;
         data_dto.cctv_location = data.cctv_location;
@@ -34,7 +34,7 @@ export class SocketService {
         const result = await this.cctvData_Repo.save(data_entity);
         console.log("repo result : ", result);
 
-        return;
+        return result;
     }
 
     public async newUser(
