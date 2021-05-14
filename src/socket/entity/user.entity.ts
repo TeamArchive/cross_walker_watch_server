@@ -21,10 +21,15 @@ export class user {
 	@PrimaryGeneratedColumn("uuid")
 	pk: string;
 
-	@Column({ name: "name", nullable: true })
+	@IsNotEmpty()
+	@Column({ name: "name", default: null })
 	name: string;
 	
-	@OneToMany((type) => cctvData, cctvData => cctvData.pk)
-	manage_cctv: cctvData[];
+	// @OneToMany(
+	// 	(type) => cctvData, 
+	// 	(cctvData) => cctvData.pk, 
+	// 	{ nullable: true }
+	// )
+	// manage_cctv: cctvData[];
 
 }

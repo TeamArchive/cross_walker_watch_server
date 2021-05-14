@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { changeStateDataDTO } from '../DTO/change-state-data.dto';
 import { SocketDataDTO } from '../DTO/socket-data.dto';
 import { cctvData } from "../entity/cctvData.entity";
+import { user } from '../entity/user.entity';
 import { cctvDataRepo, userRepo } from '../Repo/socket.repo';
 
 
@@ -11,7 +12,7 @@ export class SocketService {
 
     constructor(
 		@InjectRepository(cctvData) private cctvData_Repo: cctvDataRepo,
-        @InjectRepository(cctvData) private user_Repo: userRepo
+        @InjectRepository(user) private user_Repo: userRepo
 	) {}
 
     /**
@@ -36,6 +37,21 @@ export class SocketService {
         return;
     }
 
+    public async newUser(
+        name: string
+    ): Promise<void> {
+        console.log(name);
+
+        const _user = new user;
+        _user.name = name;
+        console.log("_user : ", _user);
+
+        const result = await this.user_Repo.save(_user);
+        console.log("result : ", result);
+
+        return;
+    }
+
     public async changeStateData(
         changeStateData_DTO: changeStateDataDTO
     ): Promise<void> {
@@ -44,19 +60,15 @@ export class SocketService {
             where: { pk: changeStateData_DTO.pk }
         })
         
-        if(changeStateData_DTO.user) {
-            const user = await this.user_Repo.findOne({
-                where: { pk: changeStateData_DTO.user_pk }
-            })
-            target.user = user
-        }
-        
         target.cctv_state = changeStateData_DTO.cctv_state;
         target.success_at = changeStateData_DTO.success_at;
-
+        target.user_pk = changeStateData_DTO.user_pk
+        
         const result = await this.cctvData_Repo.save(target);
         console.log("repo result : ", result);
 
         return;
     }
+
+    
 }

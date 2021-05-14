@@ -15,9 +15,17 @@ export class SocketController {
     }
 
     @Post('/state')
-    create(@Body() changeStateData_DTO: changeStateDataDTO): void {
+    changeStateData( @Body() changeStateData_DTO: changeStateDataDTO ): void {
         const result = this.Socket_Service.changeStateData(changeStateData_DTO);
 
         return;
     }
+
+    @Post('/user')
+    newUser( @Body() body: string ): void {
+        const result = this.Socket_Service.newUser(body["name"]);
+
+        return;
+    }
+
 }

@@ -3,11 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { SocketController } from './controller/socket.controller';
 import { cctvData } from './entity/cctvData.entity';
+import { user } from './entity/user.entity';
 import { ChatGateway } from './socket.gateway';
 import { SocketService } from './socket.service/socket.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([cctvData])],
+    imports: [TypeOrmModule.forFeature([cctvData, user])],
     controllers: [SocketController],
     providers: [
         SocketService, 

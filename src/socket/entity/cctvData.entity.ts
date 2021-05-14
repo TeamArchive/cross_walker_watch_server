@@ -21,9 +21,24 @@ export class cctvData {
 	@PrimaryGeneratedColumn("uuid")
 	pk: string;
 
-	@ManyToOne((type) => user, user => user.manage_cctv, { nullable: true })
+	@Column({ name: "user", length: 36, nullable: true, default: null })
+	user_pk: String;
+
+	@ManyToOne(
+		(type) => user,
+		(User) => User.pk,
+		{nullable: true}
+	)
 	@JoinColumn({ name: "user" })
-	user: user;
+	User: user;
+
+	// @ManyToOne(
+	// 	(type) => user, 
+	// 	(user) => user.manage_cctv, 
+	// 	{ nullable: true }
+	// )
+	// @JoinColumn({ name: "user" })
+	// user: user;
 
 	@IsNotEmpty()
 	@Column({ name: "cctv_number", nullable: false })

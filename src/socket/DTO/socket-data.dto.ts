@@ -9,6 +9,13 @@ import { cctvData } from "../entity/cctvData.entity";
 	"cctv_state":"warning",
 	"cctv_url":"www.naver.com"
 }
+
+{
+	"pk":"9db06e30-33ce-4882-b0ff-6fe3db567d8b",
+	"user_pk":"a69046c7-ddc4-4790-9717-23b4b0dee36f",
+	"cctv_state":"success",
+	"success_at":"2021-05-11 22:15:11.482553"
+}
  */
 export class SocketDataDTO {
     @IsNotEmpty()
