@@ -5,7 +5,7 @@ import { CctvController } from './controller/cctv.controller';
 import { cctvData } from './entity/cctvData.entity';
 import { user } from './entity/user.entity';
 import { ChatGateway } from './socket.gateway';
-import { CctvService } from './socket.service/cctv.service';
+import { CctvService } from './Service/cctv.service';
 
 @Module({
     imports: [TypeOrmModule.forFeature([cctvData, user])],

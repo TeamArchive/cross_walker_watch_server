@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CctvService } from 'src/cctv/socket.service/cctv.service';
+import { CctvService } from 'src/cctv/Service/cctv.service';
 import { changeStateDataDTO } from '../DTO/change-state-data.dto';
 import { CctvDataDTO } from '../DTO/cctv-data.dto';
 

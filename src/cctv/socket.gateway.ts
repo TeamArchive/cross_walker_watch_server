@@ -6,7 +6,7 @@ import {
     OnGatewayDisconnect 
 } from '@nestjs/websockets';
 import { CctvDataDTO } from './DTO/cctv-data.dto';
-import { CctvService } from './socket.service/cctv.service';
+import { CctvService } from './Service/cctv.service';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
