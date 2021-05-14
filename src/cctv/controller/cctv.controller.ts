@@ -8,17 +8,16 @@ const admin = require('firebase-admin')
 @Controller()
 export class CctvController {
     constructor(private readonly Socket_Service: CctvService) {
-        // let serAccount = require('../../crosswalk-watcher-967f4-firebase-adminsdk-o67ps-750cf93b3a')
+        let serAccount = require('../../crosswalk-watcher-967f4-firebase-adminsdk-o67ps-750cf93b3a')
 
-        // admin.initializeApp({
-        //     credential: admin.credential.cert(serAccount),
-        // })
+        admin.initializeApp({
+            credential: admin.credential.cert(serAccount),
+        })
     }
 
     @Post()
     saveData( @Body() SocketData_DTO: CctvDataDTO ): void {
         this.Socket_Service.saveData(SocketData_DTO).then((result) => {
-            if(result) {
                 let target_token = '< HERE TO DEVICE TOKEN >' // put in there device token
 
                 let message = {
@@ -30,16 +29,15 @@ export class CctvController {
                     token: target_token,
                 }
 
-                // admin
-                //     .messaging()
-                //     .send(message)
-                //     .then(function (response) {
-                //         console.log('Successfully sent push alarm message : ', response)
-                //     })
-                //     .catch(function (err) {
-                //         console.log('Error sending push alarm message : ', err)
-                //     })
-            }
+                admin
+                    .messaging()
+                    .send(message)
+                    .then(function (response) {
+                        console.log('Successfully sent push alarm message : ', response)
+                    })
+                    .catch(function (err) {
+                        console.log('Error sending push alarm message : ', err)
+                    })
         });
 
         return;
