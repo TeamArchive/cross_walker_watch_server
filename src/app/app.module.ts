@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { SocketModule } from 'src/socket/socket.module';
+import { CctvModule } from 'src/cctv/cctv.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { cctvData } from 'src/socket/entity/cctvData.entity';
-import { user } from 'src/socket/entity/user.entity';
+import { cctvData } from 'src/cctv/entity/cctvData.entity';
+import { user } from 'src/cctv/entity/user.entity';
 
 const ormconfig = require('../../ormconfig.json');
 
@@ -18,7 +18,7 @@ const ormconfig = require('../../ormconfig.json');
             entities: [cctvData, user],
             synchronize: true,
         }),
-        SocketModule],
+        CctvModule],
     controllers: [],
     providers: [],
 })

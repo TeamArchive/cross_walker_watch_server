@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { changeStateDataDTO } from '../DTO/change-state-data.dto';
-import { SocketDataDTO } from '../DTO/socket-data.dto';
+import { CctvDataDTO } from '../DTO/cctv-data.dto';
 import { cctvData } from "../entity/cctvData.entity";
 import { user } from '../entity/user.entity';
-import { cctvDataRepo, userRepo } from '../Repo/socket.repo';
+import { cctvDataRepo, userRepo } from '../Repo/cctv.repo';
 
 
 @Injectable()
-export class SocketService {
+export class CctvService {
 
     constructor(
 		@InjectRepository(cctvData) private cctvData_Repo: cctvDataRepo,
@@ -21,9 +21,9 @@ export class SocketService {
      * @returns 
      */
     public async saveData(
-        data: SocketDataDTO
+        data: CctvDataDTO
     ): Promise<cctvData> {
-        const data_dto: SocketDataDTO = new SocketDataDTO;
+        const data_dto: CctvDataDTO = new CctvDataDTO;
         data_dto.cctv_number = data.cctv_number;
         data_dto.cctv_location = data.cctv_location;
         data_dto.cctv_state = data.cctv_state;

@@ -17,7 +17,7 @@ import { cctvData } from "../entity/cctvData.entity";
 	"success_at":"2021-05-11 22:15:11.482553"
 }
  */
-export class SocketDataDTO {
+export class CctvDataDTO {
     @IsNotEmpty()
 	@IsString()
 	cctv_number: string;

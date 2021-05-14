@@ -5,15 +5,15 @@ import {
     OnGatewayConnection, 
     OnGatewayDisconnect 
 } from '@nestjs/websockets';
-import { SocketDataDTO } from './DTO/socket-data.dto';
-import { SocketService } from './socket.service/socket.service';
+import { CctvDataDTO } from './DTO/cctv-data.dto';
+import { CctvService } from './socket.service/cctv.service';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     @WebSocketServer() server;
 
-    constructor( private socketservice : SocketService ) {}
+    constructor( private socketservice : CctvService ) {}
     
     async handleConnection() {
         console.log("connect")
@@ -28,7 +28,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @SubscribeMessage('SendData')
     async GetData( 
         client, 
-        SocketData_DTO: SocketDataDTO 
+        SocketData_DTO: CctvDataDTO 
     ): Promise<String> {
         if( !SocketData_DTO.cctv_number || !SocketData_DTO.cctv_location || !SocketData_DTO.cctv_state || !SocketData_DTO.cctv_url) {
             console.log("data error");
