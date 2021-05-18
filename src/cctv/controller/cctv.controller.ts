@@ -1,9 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { CctvService } from 'src/cctv/Service/cctv.service';
 import { changeStateDataDTO } from '../DTO/change-state-data.dto';
 import { CctvDataDTO } from '../DTO/cctv-data.dto';
-
-const admin = require('firebase-admin')
+import admin from 'firebase-admin';
 
 @Controller()
 export class CctvController {
@@ -43,7 +42,7 @@ export class CctvController {
         return;
     }
 
-    @Post('/state')
+    @Put()
     changeStateData( @Body() changeStateData_DTO: changeStateDataDTO ): void {
         const result = this.Socket_Service.changeStateData(changeStateData_DTO);
 
@@ -56,5 +55,15 @@ export class CctvController {
 
         return;
     }
+
+    // @Get('/datalist')
+    // getDataList(){
+
+    // }
+
+    // @Get('/data')
+    // getData(  ){
+
+    // }
 
 }
