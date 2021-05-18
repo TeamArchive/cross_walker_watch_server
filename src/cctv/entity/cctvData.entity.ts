@@ -32,14 +32,6 @@ export class cctvData {
 	@JoinColumn({ name: "user" })
 	User: user;
 
-	// @ManyToOne(
-	// 	(type) => user, 
-	// 	(user) => user.manage_cctv, 
-	// 	{ nullable: true }
-	// )
-	// @JoinColumn({ name: "user" })
-	// user: user;
-
 	@IsNotEmpty()
 	@Column({ name: "cctv_number", nullable: false })
 	cctv_number: string;

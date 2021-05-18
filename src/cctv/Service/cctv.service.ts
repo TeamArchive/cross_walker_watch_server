@@ -4,7 +4,7 @@ import { changeStateDataDTO } from '../DTO/change-state-data.dto';
 import { CctvDataDTO } from '../DTO/cctv-data.dto';
 import { cctvData } from "../entity/cctvData.entity";
 import { user } from '../entity/user.entity';
-import { cctvDataRepo, userRepo } from '../Repo/cctv.repo';
+import { cctvDataRepo, userRepo, ShortInfoSelect } from '../Repo/cctv.repo';
 
 
 @Injectable()
@@ -15,11 +15,7 @@ export class CctvService {
         @InjectRepository(user) private user_Repo: userRepo
 	) {}
 
-    /**
-     * TESST
-     * @param data 
-     * @returns 
-     */
+    
     public async saveData(
         data: CctvDataDTO
     ): Promise<cctvData> {
@@ -44,7 +40,6 @@ export class CctvService {
 
         const _user = new user;
         _user.name = name;
-        console.log("_user : ", _user);
 
         const result = await this.user_Repo.save(_user);
         console.log("result : ", result);
@@ -70,11 +65,28 @@ export class CctvService {
         return;
     }
 
-    public async getDataList(){
+    public async getDataList(
+        offset 	: number,
+		limit 	: number
+    ): Promise<cctvData[]> {
 
+        const result = await this.cctvData_Repo.createQueryBuilder("cctvdata")
+                            .select(ShortInfoSelect)
+                            .skip(offset)
+                            .take(limit)
+                            .getMany();
+        console.log("repo result : ", result);
+        return result; 
     }
 
-    public async getData(){
-        
+    public async getData(
+        cctvdata_pk: string
+    ): Promise<cctvData> {
+
+        const result = await this.cctvData_Repo.createQueryBuilder("cctvdata")
+                            .where("cctvdata.pk = :cctvdata_pk", { cctvdata_pk })
+                            .getOne();
+        console.log("repo result : ", result);
+        return result;
     }
 }

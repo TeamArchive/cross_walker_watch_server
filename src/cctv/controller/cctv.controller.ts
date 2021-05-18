@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CctvService } from 'src/cctv/Service/cctv.service';
 import { changeStateDataDTO } from '../DTO/change-state-data.dto';
 import { CctvDataDTO } from '../DTO/cctv-data.dto';
@@ -6,7 +6,7 @@ import admin from 'firebase-admin';
 
 @Controller()
 export class CctvController {
-    constructor(private readonly Socket_Service: CctvService) {
+    constructor(private readonly cctv_Service: CctvService) {
         // let serAccount = require('../../crosswalk-watcher-967f4-firebase-adminsdk-o67ps-750cf93b3a')
 
         // admin.initializeApp({
@@ -16,7 +16,7 @@ export class CctvController {
 
     @Post()
     saveData( @Body() SocketData_DTO: CctvDataDTO ): void {
-        this.Socket_Service.saveData(SocketData_DTO).then((result) => {
+        this.cctv_Service.saveData(SocketData_DTO).then((result) => {
                 let target_token = '< HERE TO DEVICE TOKEN >' // put in there device token
 
                 let message = {
@@ -44,26 +44,35 @@ export class CctvController {
 
     @Put()
     changeStateData( @Body() changeStateData_DTO: changeStateDataDTO ): void {
-        const result = this.Socket_Service.changeStateData(changeStateData_DTO);
+        const result = this.cctv_Service.changeStateData(changeStateData_DTO);
 
         return;
     }
 
     @Post('/user')
     newUser( @Body() body: string ): void {
-        const result = this.Socket_Service.newUser(body["name"]);
+        const result = this.cctv_Service.newUser(body["name"]);
 
         return;
     }
 
     @Get('/datalist')
-    getDataList(){
+    getDataList( @Body() body ) {
+        const getDataList_result = this.cctv_Service.getDataList(
+            body.offset,
+            body.limit
+        );
 
+        return getDataList_result;
     }
 
-    @Get('/data')
-    getData(  ){
+    @Get('/:cctv_pk')
+    getData( @Param('cctv_pk') cctv_pk: string){
+        const getData_result = this.cctv_Service.getData(
+            cctv_pk
+        );
 
+        return getData_result
     }
 
 }
