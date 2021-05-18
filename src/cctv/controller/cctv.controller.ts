@@ -56,14 +56,14 @@ export class CctvController {
         return;
     }
 
-    // @Get('/datalist')
-    // getDataList(){
+    @Get('/datalist')
+    getDataList(){
 
-    // }
+    }
 
-    // @Get('/data')
-    // getData(  ){
+    @Get('/data')
+    getData(  ){
 
-    // }
+    }
 
 }

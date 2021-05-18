@@ -70,7 +70,11 @@ export class CctvService {
         return;
     }
 
-    // public async getDataList(){
+    public async getDataList(){
 
-    // }
+    }
+
+    public async getData(){
+        
+    }
 }
