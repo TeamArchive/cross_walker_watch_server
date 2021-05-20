@@ -24,12 +24,5 @@ export class user {
 	@IsNotEmpty()
 	@Column({ name: "name", default: null })
 	name: string;
-	
-	// @OneToMany(
-	// 	(type) => cctvData, 
-	// 	(cctvData) => cctvData.pk, 
-	// 	{ nullable: true }
-	// )
-	// manage_cctv: cctvData[];
 
 }
