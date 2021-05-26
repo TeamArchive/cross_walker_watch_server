@@ -60,7 +60,7 @@ export class CctvController {
         return;
     }
 
-    @Get('/datalist')
+    @Post('/datalist')
     getDataList( @Body() body ) {
         const getDataList_result = this.cctv_Service.getDataList(
             body.offset,
