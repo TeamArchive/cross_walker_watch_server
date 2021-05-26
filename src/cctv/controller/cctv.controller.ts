@@ -45,14 +45,18 @@ export class CctvController {
     @Put()
     changeStateData( @Body() changeStateData_DTO: changeStateDataDTO ): void {
         const result = this.cctv_Service.changeStateData(changeStateData_DTO);
-
+        if(!result){
+            console.log("cctv_Service.changeStateData Error");
+        }
         return;
     }
 
     @Post('/user')
     newUser( @Body() body: string ): void {
         const result = this.cctv_Service.newUser(body["name"]);
-
+        if(!result){
+            console.log("cctv_Service.newUser Error");
+        }
         return;
     }
 
@@ -62,7 +66,9 @@ export class CctvController {
             body.offset,
             body.limit
         );
-
+        if( !getDataList_result ){
+            console.log("cctv_Service.getDataList Error");
+        }
         return getDataList_result;
     }
 
@@ -71,7 +77,9 @@ export class CctvController {
         const getData_result = this.cctv_Service.getData(
             cctv_pk
         );
-
+        if( !getData_result ){
+            console.log("cctv_Service.getData Error");
+        }
         return getData_result
     }
 
