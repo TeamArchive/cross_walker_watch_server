@@ -6,7 +6,9 @@ import admin from 'firebase-admin';
 
 @Controller()
 export class CctvController {
-    constructor(private readonly cctv_Service: CctvService) {
+    constructor( 
+        private readonly cctv_Service: CctvService 
+    ) {
         let serAccount = require('../../crosswalk-watcher-967f4-firebase-adminsdk-o67ps-750cf93b3a')
 
         admin.initializeApp({

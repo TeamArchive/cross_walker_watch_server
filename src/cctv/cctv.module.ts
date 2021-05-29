@@ -16,6 +16,7 @@ import { cctvDataRepo } from './Repo/cctv.repo';
         ChatGateway
     ]
 })
+
 export class CctvModule {
     constructor(private connection: Connection) {}
 }
