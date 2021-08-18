@@ -13,7 +13,7 @@ const ormconfig = require('../../ormconfig.json');
             host: 'localhost',
             port: 3306,
             username: 'root',
-            password: 'sk362712',
+            password: 'root',
             database: 'cross_walker_watch',
             entities: [cctvData, user],
             synchronize: true,
